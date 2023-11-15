@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+	 
+	 Build file versão 0.1 : 
+	 	TODO: 
+	 		- Usar propriedades
+			- decidir sobre uso de testes, e automatizá-los, no caso
+
+-->
+<project name="trabalho-so" default="execute">
+	<description>Trabalho de Implementação para a Disciplina de Sistemas Operacionais, ministrada pela Dra. Cristina Boeres</description>
+
+	<target name="init">
+		<mkdir dir="build/classes" />
+		<mkdir dir="dist" />
+	</target>
+
+	<target name="compile" depends="init" description="Compilação do código fonte">
+		<javac srcdir="src" destdir="build/classes" />
+	</target>
+
+	<target name="archive" depends="compile" description="Ciração do .jar" >
+		<jar destfile="dist/trabalho.jar" basedir="build/classes" />
+	</target>
+
+	<target name="clean" depends="init" description="Remove as pastas temporárias">
+		<delete dir="build" />
+		<delete dir="dist" />
+	</target>
+
+	<target name="execute" depends="compile">
+		<java classname="main.Entrada" classpath="build/classes">
+			<!--<arg value="a"/>
+			<arg value="b"/>
+			<arg file="."/> -->
+		</java>
+	</target>
+</project>

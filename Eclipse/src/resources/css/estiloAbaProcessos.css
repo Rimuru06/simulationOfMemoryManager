@@ -1,0 +1,12 @@
+#acProcessos {
+	-fx-pref-width: 1024px;
+	-fx-padding: 50px;
+}
+
+#base {
+	-fx-pref-width: 1024px;
+}
+
+#tabela {
+	-fx-pref-width: 800px;
+}

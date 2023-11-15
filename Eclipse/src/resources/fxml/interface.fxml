@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TabPane?>
+
+<VBox fx:id="estrutura" fx:controller="ui.Controlador" xmlns:fx="http://javafx.com/fxml" stylesheets="resources/css/estiloBase.css">
+	<TabPane  fx:id="baseAbas" >
+	</TabPane>
+	<HBox fx:id="rodape" >
+		<Button fx:id="bCarregar" text="Carregar Arquivo" onAction="#carregarArquivo" />
+		<TextField fx:id="tfComando"/>
+		<Button fx:id="bContinuar" text="Continuar" onAction="#continuar"/>
+		<Button fx:id="bPausar" text="Pausar" onAction="#pausar"/>
+		<Button fx:id="bAndar" text="Andar" onAction="#andar"/>
+		<Button fx:id="bZerar" text="Zerar" onAction="#zerar"/>
+	</HBox>
+</VBox>

@@ -16,7 +16,6 @@
 		
 		<Label fx:id="tamanhoDisponivel" text="Tamanho Disponível: " />
 		
-		<Label text="Processos na Fila: " />
 		<ListView fx:id="lvProcessos" >
 			
 		</ListView>

@@ -56,29 +56,6 @@ public class ControladorAbaRecursos {
 
 		tamanhoRecurso.setText(tamanhoRecurso.getText() + Integer.toString(gerRec.getTamanhoDisponivel()));
 
-		/*
-		 * lvProcessos.itemsProperty().bind(lPropProcessos);
-		 * 
-		 * lPropProcessos.set(FXCollections.observableArrayList(gerRec.getFila()
-		 * ));
-		 * 
-		 * lvProcessos.setCellFactory(new Callback<ListView<Processo>,
-		 * ListCell<Processo>>() {
-		 * 
-		 * @Override public ListCell<Processo> call(ListView<Processo> listView)
-		 * { return new ListCell<Processo>() {
-		 * 
-		 * @Override public void updateItem(Processo item, boolean empty) { //
-		 * Must call super super.updateItem(item, empty);
-		 * 
-		 * int index = this.getIndex(); String name = null;
-		 * 
-		 * // Format name if (item == null || empty) { // No action to perform }
-		 * else { name = (index + 1) + ". Processo " + item.getId(); }
-		 * 
-		 * this.setText(name); setGraphic(null); } }; } });
-		 */
-
 		for (Pagina p : gerRec.getQuadros()) {
 			rotulo = new Label(p.toString());
 			rotulo.getStyleClass().add("qds");

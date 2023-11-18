@@ -1,31 +1,57 @@
+/* Estilos para a base e lista */
 #base {
-	-fx-pref-width: 1200px;
-	-fx-padding: 10px;
-	-fx-spacing: 10px;
+    -fx-pref-width: 600px;
+    -fx-padding: 10px;
+    -fx-spacing: 1px;
+    -fx-background-color: #292929; /* Cor de fundo mais escura para o modo noturno */
+    -fx-font-size: 14pt !important;
+    -fx-text-fill: #00FF00; /* Cor do texto em verde */
 }
-
 #lista {
-	-fx-pref-width: 300px;
-	-fx-spacing: 10px;
-	
+    -fx-pref-width: 300px;
+    -fx-spacing: 10px;
+    -fx-text-fill: #00FF00; /* Cor do texto em verde */
 }
 
+#lista Label, #lvProcessos {
+    -fx-text-fill: #00FF00; /* Cor do texto em verde */
+    -fx-background-color: transparent;
+}
+
+#tamanhoRecurso, #tamanhoDisponivel {
+    -fx-text-fill: #00FF00;
+}
+
+/* Estilos para os quadrados e rolagem */
 #quadros {
-	-fx-pref-width: 670px;
-	-fx-padding-left: 10px;
-	
-	-fx-hgap: 20px;
-	-fx-vgap: 20px;
-	-fx-effect: dropshadow( gaussian , grey , 10 , 0 , 0 , 0 );
-	-fx-alignment: center;
-	
+    -fx-pref-width: 748px !important;
+    -fx-pref-height: 1200px !important;
+    -fx-padding: 20px !important;
+    -fx-hgap: 15px !important;
+    -fx-vgap: 15px !important;
+    -fx-alignment: center !important;
+    -fx-background-color: #1a1a1a; /* Cor de fundo mais escura para o modo noturno */
+    -fx-border-color: #292929 !important;
+    -fx-border-width: 3px !important;
+    -fx-border-radius: 15px !important;
+    -fx-background-radius: 15px !important;
+    -fx-font-size: 14pt !important;
+    -fx-text-fill: #00FF00 !important;
+
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 10, 0, 0, 0);
+    -fx-radius: 5px;
 }
 
 #rolagem {
-	-fx-pref-width: 700px;
+    -fx-pref-width: 750px;
+    -fx-background-color: #292929; /* Cor de fundo mais escura para o modo noturno */
 }
 
 .qds {
-	-fx-background-color: ghostwhite;
-	-fx-padding: 5px;
+    -fx-background-color: #555555; /* Cor de fundo mais escura para o modo noturno */
+    -fx-padding: 15px; /* Aumenta o espaçamento interno dos quadrados */
+    -fx-text-fill: #00FF00; /* Alteração da cor do texto para verde */
+    -fx-border-color: #00FF00; /* Cor da borda */
+    -fx-border-width: 2px; /* Largura da borda */
+    -fx-border-radius: 10px; /* Raio da borda */
 }

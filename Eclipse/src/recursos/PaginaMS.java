@@ -10,8 +10,7 @@ public class PaginaMS extends Pagina {
 	
 	@Override
 	public String toString(){
-		return  "Processo: \t" + ((this.dono != null) ? this.dono.getId() : "x") + "\n"
-				+ "End. Fisico: " + Long.toString(endFisico) + "\n";
+		return  "Processo: \t" + ((this.dono != null) ? this.dono.getId() : "") + "\n";
 	}
 
 }

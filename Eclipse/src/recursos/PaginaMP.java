@@ -18,10 +18,10 @@ public class PaginaMP extends Pagina {
 	}
 	
 	public String toString(){
-		return  "Processo: \t" + ((this.dono != null) ? this.dono.getId() : "x") + "\n"
-				+ "Mod? \t\t" + ((this.modificado) ? "v" : "x") + "\n"
-				+ "Util? \t\t" + ((this.utilizado) ? "v" : "x") + "\n"
-				+ "Ultima Util.: \t" + ((this.ultimaUtilizacao != null)? this.ultimaUtilizacao.toString().substring(10, 19): 'x') + "\n"
-				+ "End. Fisico: " + Long.toString(endFisico) + "\n";
-	}
+        return  "Processo: \t" + ((this.dono != null) ? this.dono.getId() : " ") + "\n"
+                + "Modificado: \t\t" + ((this.modificado) ? "v" : "f") + "\n"
+                + "Utilizado: \t\t\t" + ((this.utilizado) ? "v" : "f") + "\n"
+                + "Ultima Util.: \t\t" + ((this.ultimaUtilizacao != null)? this.ultimaUtilizacao.toString().substring(10, 19): 'x') + "\n"
+                + "Quadro: \t\t\t" + Long.toString(endFisico) + "\n";
+    }
 }

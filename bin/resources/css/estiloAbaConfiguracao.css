@@ -1,0 +1,7 @@
+#base {
+	-fx-pref-width: 1024px;
+	-fx-padding: 50px;
+	-fx-spacing: 30px;
+	-fx-hgap: 30px;
+	-fx-vgap: 30px;
+}

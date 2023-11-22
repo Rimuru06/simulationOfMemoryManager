@@ -5,10 +5,10 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.HBox;
-import recursos.GerenciadorRecursos;
-import recursos.Pagina;
-import recursos.PaginaMP;
-import recursos.TabelaDePaginas;
+import essenciais.GerenciadorRecursos;
+import essenciais.Pagina;
+import essenciais.PaginaMP;
+import essenciais.TabelaDePaginas;
 
 public class AbaRecursos extends Tab {
 	

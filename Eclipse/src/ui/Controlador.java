@@ -6,7 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-import controle.Configuracao;
+import config.Configuracao;
 import excecoes.ComandoInvalido;
 import excecoes.ProcessoInexistente;
 import excecoes.TamanhoInsuficiente;
@@ -22,14 +22,13 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import recursos.GerenciadorDisco;
-import recursos.GerenciadorMemoria;
-import recursos.PaginaMP;
-import recursos.PaginaMS;
-import recursos.Processo;
-import so.Kernel;
-import so.SwapperLRU;
-import so.SwapperRelogio;
+import essenciais.GerenciadorDisco;
+import essenciais.GerenciadorMemoria;
+import essenciais.PaginaMP;
+import essenciais.PaginaMS;
+import essenciais.Processo;
+import SistemaOperacional.Nucleo;
+import SistemaOperacional.SwapperLRU;
 
 public class Controlador {
 
@@ -57,14 +56,8 @@ public class Controlador {
 	private AbaRecursos abaMemoria, abaDisco;
 
 	private AbaProcessos abaProcessos;
-	
-	private AbaConfiguracao abaConfiguracao;
 
-	// SO
-
-	private Kernel kernel;
-
-	// Interno
+	private Nucleo kernel;
 
 	private String instrucao = null;
 	private Scanner leitor = null;
@@ -80,21 +73,18 @@ public class Controlador {
 		Configuracao confs = Configuracao.obterInstancia();
 		GerenciadorMemoria gm = new GerenciadorMemoria();
 		GerenciadorDisco gd = new GerenciadorDisco();
+		
 		if(confs.getSwapper() == 0)
-			kernel = new Kernel(gm, gd, new SwapperRelogio(gm, gd));
-		else
-			kernel = new Kernel(gm, gd, new SwapperLRU(gm, gd));
+			kernel = new Nucleo(gm, gd, new SwapperLRU(gm, gd));
+		
 
 		abaMemoria = new AbaRecursos("Memoria Principal", kernel.obterGerenciadorMP());
 		abaDisco = new AbaRecursos("Memoria Secundária", kernel.obterGerenciadorMS());
 
-		// Swapper swp = new SwapperRelogio(gm, gd);
 
 		abaProcessos = new AbaProcessos("Processos", kernel);
-
-		abaConfiguracao = new AbaConfiguracao("Configuracoes");
 		
-		baseAbas.getTabs().addAll(abaDisco, abaMemoria, abaProcessos, abaConfiguracao);
+		baseAbas.getTabs().addAll(abaDisco, abaMemoria, abaProcessos);
 		emExecucao = false;
 	}
 
@@ -172,7 +162,6 @@ public class Controlador {
 	private void zerar() {
 		Configuracao confs = Configuracao.obterInstancia();
 		
-		confs.aplicarConfiguracoes();
 		
 		baseAbas.getTabs().remove(0, baseAbas.getTabs().size());
 		initialize();		
@@ -181,7 +170,6 @@ public class Controlador {
 	}
 
 	private void processarInstrucao(String instrucao) throws ComandoInvalido {
-		// Possivelmente passará para o Kernel
 		String[] partes;
 		Processo atual = null;
 		int inicio, 
@@ -203,10 +191,7 @@ public class Controlador {
 				return;
 			}
 		}
-		// Retorna processos ao estado de pronto
 		kernel.resetarEstados();
-
-		// Obter ação
 		switch (partes[1].charAt(0)) {
 		case 'C':
 			try {
@@ -270,6 +255,17 @@ public class Controlador {
 			
 			kernel.obterGerenciadorDP().ler(atual, Integer.parseInt(partes[2].substring(inicio + 1, fim)));
 			break;
+		case 'T':
+			try{
+				kernel.terminaProcesso(partes[0].charAt(1) - '0');
+				abaProcessos.atualizarRemocao();
+				abaProcessos.atualizar();
+				abaMemoria.atualizar(atual.getTabela(), PaginaMP.class);
+				abaDisco.atualizar(atual.getTabela(), PaginaMS.class);
+			} catch(TamanhoInsuficiente e) {
+				alertar("Tamanho Insuficiente de memoria", "Nao foi possivel acessar a pagina");
+			}
+			break;
 		default:
 			throw new ComandoInvalido("Comando \"" + partes[0] + "\" nao implementado. ");
 		}
@@ -280,7 +276,6 @@ public class Controlador {
 			abaMemoria.atualizar(p.getTabela(), PaginaMP.class);
 			abaDisco.atualizar(p.getTabela(), PaginaMS.class);
 		}
-		abaProcessos.atualizarTabela(atual);
 	}
 
 	private void processarInstrucoes() throws ComandoInvalido {
